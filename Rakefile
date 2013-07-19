@@ -26,7 +26,7 @@ namespace :db do
    # before :migrate runs, rake first runs all its
    # dependent tasks (i.e. :environment)
    #
-   # in this case we must first create the database 
+   # in this case we must first create the database
    # and establish a connection before we migrate it.
    desc "Migrate the database"
    task(:migrate => :environment) do

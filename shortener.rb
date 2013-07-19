@@ -42,6 +42,7 @@ eos
 #
 # http://guides.rubyonrails.org/association_basics.html
 class Link < ActiveRecord::Base
+  attr_accessible :longURL, :shortURL
 end
 
 get '/' do
@@ -51,7 +52,9 @@ end
 post '/new' do
     # PUT CODE HERE TO CREATE NEW SHORTENED LINKS
     url = request.params['url']
-    # puts 'here is request', request  .env["REQUEST_METHOD"]
+    l = Link.new longURL: url, shortURL: 'ourserver/short'
+    l.save()
+    puts Link.all.inspect
 end
 
 get '/jquery.js' do
