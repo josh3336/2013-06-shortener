@@ -50,6 +50,8 @@ end
 
 post '/new' do
     # PUT CODE HERE TO CREATE NEW SHORTENED LINKS
+    url = request.params['url']
+    # puts 'here is request', request  .env["REQUEST_METHOD"]
 end
 
 get '/jquery.js' do
