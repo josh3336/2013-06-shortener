@@ -54,7 +54,9 @@ post '/new' do
     url = request.params['url']
     l = Link.new longURL: url, shortURL: 'ourserver/short'
     l.save()
-    puts Link.all.inspect
+   # puts (Link.find_by_longURL url).inspect
+    puts (Link.select("id").find_by_longURL(url).value.inspect
+    #puts Link.all.inspect
 end
 
 get '/jquery.js' do
