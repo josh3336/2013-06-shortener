@@ -45,6 +45,13 @@ class Link < ActiveRecord::Base
   attr_accessible :longURL, :shortURL
 end
 
+get '/s/:id' do
+    idSearch = params[:id]
+    url = Link.select('longURL').find_by_id(idSearch).attributes['longURL'].to_s
+    puts url
+    '<script> window.location ="'+ url +'" </script>'
+end
+
 get '/' do
     form
 end
@@ -55,8 +62,11 @@ post '/new' do
     l = Link.new longURL: url, shortURL: 'ourserver/short'
     l.save()
    # puts (Link.find_by_longURL url).inspect
-    puts (Link.select("id").find_by_longURL(url).value.inspect
+    id=(Link.select("id").find_by_longURL(url))
     #puts Link.all.inspect
+    id = id.attributes['id'].to_s
+    '<a href="http://localhost:4567/s/'+id+'">' + 'http://localhost:4567/s/' + id + ' </a>'
+    # $('#display').text('hello')
 end
 
 get '/jquery.js' do
