@@ -49,7 +49,7 @@ get '/s/:id' do
     idSearch = params[:id]
     url = Link.select('longURL').find_by_id(idSearch).attributes['longURL'].to_s
     puts url
-    '<script> window.location ="'+ url +'" </script>'
+    redirect(url)
 end
 
 get '/' do
