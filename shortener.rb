@@ -59,9 +59,14 @@ end
 post '/new' do
     # PUT CODE HERE TO CREATE NEW SHORTENED LINKS
     url = request.params['url']
-    l = Link.new longURL: url, shortURL: 'ourserver/short'
-    l.save()
+    if Link.select("id").find_by_longURL(url)
+        puts 'in db'
+
+    else 
+        l = Link.new longURL: url, shortURL: 'ourserver/short'
+        l.save()
    # puts (Link.find_by_longURL url).inspect
+    end
     id=(Link.select("id").find_by_longURL(url))
     #puts Link.all.inspect
     id = id.attributes['id'].to_s
